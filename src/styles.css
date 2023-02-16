@@ -250,7 +250,10 @@ h2 {
 
 .container-form {
   height: 90%;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-bottom: 10%;
 }
 /**/
 
@@ -423,8 +426,8 @@ h2 {
   bottom: 0;
   background-color: white;
   width: 100vw;
-  height: 10%;
-  line-height: 4em;
+  height: 5%;
+  line-height: 3em;
 
   right: 0;
 

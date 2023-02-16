@@ -1,10 +1,10 @@
 <!--<p>create-citygame works!</p>-->
-<div>
+<div class="form__group field"> 
   <h2>Basic Information</h2>
 
   <form (ngSubmit)="onSubmit()" #cityGameForm="ngForm">
-    <label for="nameOfGame">Name of Game</label>
-    <input
+    <label class="form__label" for="nameOfGame">Name of Game</label>
+    <input class="form__field"
       type="text"
       id="nameOfGame"
       name="nameOfGame"
@@ -297,6 +297,8 @@
 
   <div class="button-to-track-page-container">
     <button
+      routerLink="/addplaces"
+      routerLinkActive="active"
       class="round icon-button left-arrow-icon-buttton send-button"
       type="submit"
       (click)="onSubmit()"
