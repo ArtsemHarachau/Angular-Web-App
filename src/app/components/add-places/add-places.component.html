@@ -1,47 +1,49 @@
-<div class="add-place-container">
-    <div class="container-form">
-      <h2>Create your own track</h2>
+<div id="main-place-container" class="add-place-container">
+  <div class="container-form">
+    <h2>Create your own track</h2>
 
-      <button class="round icon-button left-arrow-icon-buttton send-button" type="submit" (click)="onSubmit()">
-        <!-- <span class="button-icon material-icons">add</span> -->
-        <span class="button-text-content">Add new place</span>
-      </button>
-        
-        <!--<div class="button-container">
+    <!--<div class="button-container">
     <button class="round icon-button left-arrow-icon-buttton send-button">
       <span class="button-icon material-icons">add</span>
       <span class="button-text-content">Add new place</span>
     </button>
   </div>-->
 
-      <form>
-        
-        <label for="fname">
-          <h3>Address</h3>
-        </label><br/>
-        <input type="text" id="fname" name="fname" /><br />
+    <form>
+      <label for="fname" class="omrs-input-underlined"> <h3>Address</h3> </label
+      ><br />
+      <input
+        class="omrs-input-label"
+        placeholder="Address"
+        type="text"
+        id="fname"
+        name="fname"
+      /><br />
 
-        <label for="fname">
-          <h3>History of this place in your game</h3>
-        </label><br />
-        <textarea name="taskText" cols="40" rows="5"></textarea><br />
+      <label for="fname"> <h3>History of this place in your game</h3> </label
+      ><br />
+      <textarea name="taskText" cols="40" rows="5"></textarea><br />
 
-        <label for="ftask">
-          <h3>Task in this place</h3>
-        </label><br />
-        <textarea name="taskText" cols="40" rows="5"></textarea><br />
+      <label for="ftask"> <h3>Task in this place</h3> </label><br />
+      <textarea name="taskText" cols="40" rows="5"></textarea><br />
 
-        <label for="fanswer">
-          <h3>Correct answer</h3>
-          </label><br />
-        <input type="text" id="fanswer" name="fanswer" /><br />
-      </form>
-    </div>
-
-    <div class="bottom-container1">
-      <span class="bottom-container-text">Zero places in your track</span>
-    </div>
+      <label for="fanswer"> <h3>Correct answer</h3> </label><br />
+      <input type="text" id="fanswer" name="fanswer" /><br />
+    </form>
   </div>
+
+  <button class="icon-button" type="submit" (click)="onSubmit()">
+    <!-- <span class="button-icon material-icons">add</span> -->
+    <span class="button-icon material-icons">add</span>
+    <span class="button-text-content">Add new place</span>
+  </button>
+
+  <div id="places-track" class="bottom-container1">
+    <span id="zero-places-span" class="bottom-container-text"
+      >Zero places in your track</span
+    >
+  </div>
+</div>
 
   <!--<div id="map"></div>-->
 

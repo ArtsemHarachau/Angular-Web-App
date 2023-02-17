@@ -13,6 +13,7 @@ h2 {
   font-family: "JetBrainsMono-Regular";
   font-size: 48px;
   text-align: center;
+  color: white;
 }
 
 .track {
@@ -333,7 +334,7 @@ h2 {
 
 /**/
 
-.icon-button {
+/* .icon-button {
   background: white;
   display: flex;
   flex-direction: row;
@@ -359,13 +360,13 @@ h2 {
   min-width: 120px;
   letter-spacing: 1px;
   /* padding-left: 2em !important;*/
-  position: relative;
+/*position: relative;
   backface-visibility: hidden;
   transform: translatey(0) scale3d(1, 1, 1);
   transition: all 100ms !important;
-}
+} */
 
-.icon-button:hover {
+/* .icon-button:hover {
   color: rgba(white, 0.75);
 }
 .icon-button:active {
@@ -376,7 +377,7 @@ h2 {
 .icon-button:focus {
   outline: none !important;
   box-shadow: 0 0 1px 3px rgba(blue, 0.4);
-}
+} */
 
 .button-icon {
   background-clip: text;
@@ -421,15 +422,17 @@ h2 {
   text-align: center;
 }
 
-.bottom-container1 {
+/* .bottom-container1 {
   position: fixed;
   bottom: 0;
   background-color: white;
   width: 100vw;
-  height: 5%;
-  line-height: 3em;
+  height: 10%;
+  line-height: 4em;
 
   right: 0;
+
+  margin-bottom: 5%;
 
   text-align: center;
 }
@@ -446,6 +449,22 @@ h2 {
   background: -webkit-linear-gradient(top left, #84ceeb 20%, #8860d0 100%) fixed;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+} */
+@font-face {
+  font-family: JetBrainsMono-Regular;
+  src: url(./assets/fonts/JetBrainsMono-Regular.ttf) format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url(./assets/material-icons/MaterialIconsOutlined-Regular.otf)
+      format("opentype"),
+    url(./assets/material-icons/MaterialIcons-Regular.ttf) format("truetype");
 }
 
 /*@font-face {

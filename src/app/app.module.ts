@@ -13,7 +13,6 @@ import { AddPlacesComponent } from './components/add-places/add-places.component
   declarations: [
     AppComponent,
     CreateCityGameComponent,
-    CreateCityGameComponent,
     AddPlacesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
