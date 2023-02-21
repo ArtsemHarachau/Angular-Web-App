@@ -412,10 +412,10 @@ h2 {
 
 /*.container-form {
   height: 90%;
-  /* overflow: auto; */
+  overflow: auto; 
   overflow-x: hidden;
   overflow-y: auto;
-  /* margin-bottom: 10%; */
+  margin-bottom: 10%;
 }
 
  @font-face {
