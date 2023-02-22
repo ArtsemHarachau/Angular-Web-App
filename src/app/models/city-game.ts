@@ -41,4 +41,20 @@ export class CityGame {
   @JsonClassType({ type: () => [Array, [Administrators]] })
   @JsonManagedReference()
   playing?: Array<GameParticipant> = [];
+
+  constructor(
+    idGame?: number,
+    nameOfGame?: string,
+    accessCode?: number,
+    cityForGame?: string,
+    dateForStartGame?: string,
+    countryForGame?: string
+  ) {
+    this.idGame = idGame;
+    this.nameOfGame = nameOfGame;
+    this.accessCode = accessCode;
+    this.cityForGame = cityForGame;
+    this.dateForStartGame = dateForStartGame;
+    this.countryForGame = countryForGame;
+  }
 }

@@ -8,12 +8,16 @@ import { CreateCityGameComponent } from './components/create-city-game/create-ci
 import { CityGameService } from './services/city-game.service';
 import { FormsModule } from '@angular/forms';
 import { AddPlacesComponent } from './components/add-places/add-places.component';
+import { StartComponent } from './components/start/start.component';
+import { GetAllCityGamesComponent } from './components/get-all-city-games/get-all-city-games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateCityGameComponent,
     AddPlacesComponent,
+    StartComponent,
+    GetAllCityGamesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [CityGameService],

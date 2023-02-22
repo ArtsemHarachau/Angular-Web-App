@@ -74,6 +74,8 @@ export class CreateCityGameComponent {
     //   return value;
     // });
 
+    this.cityGameService.setCityGameObject(this.cityGame);
+
     this.cityGameService.createCityGame(this.cityGame).subscribe(
       (resp) => {
         // console.log(resp.body);

@@ -1,51 +1,67 @@
+<!-- <script src="http://maps.googleapis.com/maps/api/js?key=API-KEY"></script> -->
+
 <div id="main-place-container" class="add-place-container">
   <div class="container-form">
     <h2>Create your own track</h2>
 
-    <form>
-      <label class="form-input-label" for="fname"> Address </label><br />
+    <form (ngSubmit)="onSubmit()" #placesForm="ngForm">
+      <label for="address" class="omrs-input-underlined">
+        <h3>Address</h3> </label
+      ><br />
       <input
         class="omrs-input-label"
-       
         type="text"
-        id="fname"
-        name="fname"/><br/>
+        id="address"
+        name="address"
+        [(ngModel)]="placeInGame.address"
+        required
+        #address="ngModel"
+      /><br />
 
-      <label class="form-input-label" for="fname"> History of this place in your game</label><br/>
-      <textarea class="omrs-input-label" name="taskText" cols="40" rows="5"></textarea><br/>
+      <label for="legend"> <h3>Legend of this place</h3> </label><br />
+      <textarea
+        id="legend"
+        name="legend"
+        [(ngModel)]="placeInGame.legend"
+        required
+        #legend="ngModel"
+        cols="40"
+        rows="5"
+      ></textarea
+      ><br />
+
+      <!-- <label for="fname"> <h3>History of this place in your game</h3> </label
+      ><br />
+      <textarea name="taskText" cols="40" rows="5"></textarea><br />
 
       <label class="form-input-label" for="ftask"> Task in this place </label><br/>
-      <textarea class="omrs-input-label"  name="taskText" cols="40" rows="5"></textarea><br/>
-
-      <label class="form-input-label" for="fanswer"> Correct answer </label><br/>
-      <input class="omrs-input-label"  type="text" id="fanswer" name="fanswer"/><br/>
+      <textarea class="omrs-input-label"  name="taskText" cols="40" rows="5"></textarea><br/> -->
     </form>
   </div>
 
+  <div #map style="width: 100%; height: 400px"></div>
+
   <button class="icon-button" type="submit" (click)="onSubmit()">
-    <!-- <span class="button-icon material-icons">add</span> -->
-    <!--span class="button-icon material-icons">add</span-->
-   
+    <span class="button-icon material-icons">add</span>
     <span class="button-text-content">Add new place</span>
-    
   </button>
 
   <div id="places-track" class="bottom-container1">
-    <span id="zero-places-span" 
-          class="bottom-container-text"> Zero places in your track</span
-      >
+    <span id="zero-places-span" class="bottom-container-text">
+      Zero places in your track</span
+    >
   </div>
 </div>
 
-  <!--<div id="map"></div>-->
+<!--<div id="map"></div>-->
 
-  <!-- 
+<!-- 
    The `defer` attribute causes the callback to execute after the full HTML
    document has been parsed. For non-blocking uses, avoiding race conditions,
    and consistent behavior across browsers, consider loading using Promises
    with https://www.npmjs.com/package/@googlemaps/js-api-loader.
   -->
-  <!--<script>
+<!--<script>
     src =
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly";
     defer;
