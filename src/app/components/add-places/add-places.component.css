@@ -75,21 +75,17 @@
   fill: var(--omrs-color-ink-high-contrast);
 }
 
-
 body {
   background: linear-gradient(to bottom, #330099, #6600cc);
 }
 
-
 .container-form {
-  
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   max-width: 600px;
   margin: 0 auto;
 }
-
 
 .form-input-label {
   font-size: 16px;
@@ -99,7 +95,6 @@ body {
   margin-bottom: 20px;
   width: 300px;
 }
-
 
 .omrs-input-label {
   font-size: 20px;
@@ -129,14 +124,12 @@ select {
   color: #a9a9a9;
 }
 
-
 .button-to-track-page-container {
   display: flex;
   justify-content: center;
 }
 
-
-.icon-button {
+/* .icon-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,7 +148,7 @@ select {
 .icon-button:hover {
   background: linear-gradient(to right, #f5fc90, #f090fc);
   color: #fff;
-}
+} */
 
 /* styles for the input fields */
 input[type="text"],
@@ -175,7 +168,6 @@ h2 {
   color: white;
   font-size: 24px;
 }
-
 
 /* .form-input-field {
   font-family: inherit;
@@ -221,14 +213,14 @@ h2 {
 
 .form-input-field:focus-within {
   ~ .form__label {
-      position: absolute;
-      top: 0;
-      display: block;
-      transition: 0.2s;
-      font-size: 1rem;
-      color: #11998e;
-      font-weight:700;    
-    }
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+  }
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
@@ -246,14 +238,13 @@ h2 {
   font-weight: 700;
 }
 
-
 .form-input-field:required {
   box-shadow: none;
 }
 
 .form-input-field:invalid {
   box-shadow: none;
-}
+} */
 
 .icon-button {
   background: white;
@@ -351,16 +342,15 @@ h2 {
 .icon-place-button:focus {
   outline: none !important;
   box-shadow: 0 0 1px 3px rgba(blue, 0.4);
-}*/
-
-.bottom-container1 {
+}
+*/ .bottom-container1 {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   max-width: 600px;
   margin: 0 auto;
   bottom: 0;
-  
+
   height: 10%;
   line-height: 4em;
 
@@ -371,12 +361,11 @@ h2 {
   text-align: center;
 }
 
-
 .bottom-container-text {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
- 
+
   font-size: 20px;
 
   background-clip: text;
@@ -385,7 +374,6 @@ h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 
 .button-text-content {
   background-clip: text;
