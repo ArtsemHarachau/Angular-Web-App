@@ -44,17 +44,19 @@ export class AddPlacesComponent {
   }
 
   
-  updateImagePreview() {
-    var imageUrl = document.getElementById('image-url').value;
-    var imagePreview = document.getElementById('image-preview');
-    if (imageUrl.match(/\.(jpeg|jpg|png)$/) == null) {
-      imagePreview.src = "";
-      document.getElementById('error-message').innerHTML = "It's not a URL of an image.";
-      return;
-    }
-    imagePreview.src = imageUrl;
-    document.getElementById('error-message').innerHTML = "";
-  }
+  //updateImagePreview() {
+  //   var imageUrl = document.getElementById('image-url') as HTMLInputElement;
+  //   var imageUrlVal = imageUrl.value;
+  //   var imagePreview = document.getElementById('image-preview') as HTMLImageElement;
+  //   if (imageUrlVal.match(/\.(jpeg|jpg|png)$/) == null) {
+  //     imagePreview.src = "";
+  //     var docVal = document.getElementById('error-message');
+  //     docVal!.innerHTML = "It's not a URL of an image.";
+  //     return;
+  //    }
+  //    imagePreview.src = imageUrl.value;
+  //   document.getElementById('error-message')!.innerHTML = "";
+  // }
 
 
   mapInitializer() {
@@ -218,6 +220,8 @@ export class AddPlacesComponent {
 
     this.placeInGame.cityGame = this.cityGameService.getCityGameObject();
     console.log(this.cityGameService.getCityGameObject());
+
+    //this.updateImagePreview;
 
     this.addNewPlace();
   }
