@@ -3,7 +3,7 @@
   <h2>Basic Information</h2>
 
   <form (ngSubmit)="onSubmit()" #cityGameForm="ngForm">
-    <label class="form__label" for="nameOfGame">Name of Game</label>
+    <label class="form__label" for="nameOfGame"> <h3>Name of Game</h3> </label>
     <input class="form__field"
       type="text"
       id="nameOfGame"
@@ -12,8 +12,8 @@
       required
       #nameOfGame="ngModel"
     /><br />
-    <label class="form__label"
-for="dateForStartGame">Date</label>
+    
+    <label class="form__label" for="dateForStartGame"> <h3>Date</h3> </label>
     <input
       type="datetime-local"
       id="dateForStartGame"
@@ -22,7 +22,8 @@ for="dateForStartGame">Date</label>
       required
       #dateForStartGame="ngModel"
     /><br />
-    <label class="form__label" for="cityForGame">City for game</label>
+    
+    <label class="form__label" for="cityForGame"> <h3>City for game</h3> </label>
     <input
       type="text"
       id="cityForGame"
@@ -31,7 +32,8 @@ for="dateForStartGame">Date</label>
       required
       #cityForGame="ngModel"
     /><br />
-    <label class="form__label" for="countryForGame">Country</label>
+    
+    <label class="form__label" for="countryForGame"> <h3>Country</h3> </label>
 
     <select
       id="countryForGame"
