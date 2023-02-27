@@ -1,5 +1,13 @@
+#map {
+  position: relative;
+  height: 91vh;
+  width: 100%;
+
+  z-index: 1;
+}
+
 /* Input*/
-.omrs-input-underlined > input,
+/* .omrs-input-underlined > input,
 .omrs-input-filled > input {
   border: none;
   border-bottom: 0.125rem solid var(--omrs-color-ink-medium-contrast);
@@ -73,18 +81,29 @@
 .omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
 .omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
   fill: var(--omrs-color-ink-high-contrast);
-}
+} */
 
 body {
   background: linear-gradient(to bottom, #330099, #6600cc);
 }
 
 .container-form {
+  position: absolute;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
+  /* min-width: 500px; */
+  max-width: 500px;
   margin: 0 auto;
+  margin-top: 6%;
+  margin-left: 2%;
+  height: auto;
+
+  background: linear-gradient(to bottom, #84ceeb 20%, #8860d0 100%);
+
+  /* background: #fb0fb9; */
+
+  z-index: 2;
 }
 
 .form-input-label {
@@ -155,7 +174,7 @@ input[type="text"],
 input[type="datetime-local"] {
   font-size: 14px;
   padding: 8px 12px;
-  width: 46%;
+  width: 90%;
   border-radius: 10px;
   border: none;
   margin-bottom: 20px;
@@ -247,6 +266,7 @@ h2 {
 } */
 
 .icon-button {
+  position: absolute;
   background: white;
   display: flex;
   flex-direction: row;
@@ -278,6 +298,8 @@ h2 {
   backface-visibility: hidden;
   transform: translatey(0) scale3d(1, 1, 1);
   transition: all 100ms !important;
+
+  /* z-index: 2; */
 }
 
 .icon-button:hover {
@@ -344,6 +366,7 @@ h2 {
   box-shadow: 0 0 1px 3px rgba(blue, 0.4);
 }
 */ .bottom-container1 {
+  position: relative;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -359,6 +382,7 @@ h2 {
   margin-bottom: 15%;
 
   text-align: center;
+  /* z-index: 2; */
 }
 
 .bottom-container-text {
