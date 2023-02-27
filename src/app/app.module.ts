@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AddPlacesComponent } from './components/add-places/add-places.component';
 import { StartComponent } from './components/start/start.component';
 import { GetAllCityGamesComponent } from './components/get-all-city-games/get-all-city-games.component';
+import { SummaryComponent } from './components/summary/summary.component';
 // import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { GetAllCityGamesComponent } from './components/get-all-city-games/get-al
     AddPlacesComponent,
     StartComponent,
     GetAllCityGamesComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,

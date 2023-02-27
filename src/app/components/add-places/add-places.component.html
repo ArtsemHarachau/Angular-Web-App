@@ -3,8 +3,8 @@
     <h2>Create your own track</h2>
 
     <form (ngSubmit)="onSubmit()" #placesForm="ngForm">
-      <label for="address" class="form-input-label">
-        <h3>Address</h3> </label> <br/>
+      <label for="address" class="form-input-label"> <h3>Address</h3> </label>
+      <br />
 
       <input
         #v
@@ -18,7 +18,9 @@
         #address="ngModel"
       /><br />
 
-      <label for="legend" class="form-input-label">  <h3>Legend of this place</h3> </label><br />
+      <label for="legend" class="form-input-label">
+        <h3>Legend of this place</h3> </label
+      ><br />
 
       <textarea
         class="form-input-field"
@@ -34,21 +36,31 @@
     </form>
 
     <label for="image-url" class="form-input-label"> <h3>Image URL:</h3></label>
-      <input 
-        class="form-input-field"
-        id="image-url" 
-        type="text" 
-        name="image-url"
-        oninput="updateImagePreview()">
-      <br>
-      <img id="image-preview" src="" >
-      
-      <div id="error-message" 
-           class="error"></div>
+    <input
+      class="form-input-field"
+      id="image-url"
+      type="text"
+      name="image-url"
+      oninput="updateImagePreview()"
+    />
+    <br />
+    <img id="image-preview" src="" />
+
+    <div id="error-message" class="error"></div>
 
     <button class="icon-button" type="submit" (click)="onSubmit()">
       <span class="button-icon material-icons">add</span>
       <span class="button-text-content">Add new place</span>
+    </button>
+
+    <button
+      routerLink="/summary"
+      routerLinkActive="active"
+      class="icon-button"
+      type="submit"
+    >
+      Save all places
+      <!-- <span class="button-text-content">Save all places</span> -->
     </button>
   </div>
 

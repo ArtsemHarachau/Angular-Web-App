@@ -23,6 +23,8 @@ export class CityGameService {
   private cityGameUrl: string;
 
   private cityGameObject = new BehaviorSubject<CityGame>({});
+
+  private gamePlacesArray = new BehaviorSubject<PlaceInGame[]>([]);
   // createdCityGameObject = this.cityGameObject.asObservable();
 
   constructor(private httpClient: HttpClient) {
@@ -44,6 +46,14 @@ export class CityGameService {
 
   getCityGameObject(): CityGame {
     return this.cityGameObject.getValue();
+  }
+
+  setGamePlacesArray(placesArray: PlaceInGame[]) {
+    this.gamePlacesArray.next(placesArray);
+  }
+
+  getGamePlacesArray(): PlaceInGame[] {
+    return this.gamePlacesArray.getValue();
   }
 
   public createCityGame(cityGame: CityGame): Observable<HttpResponse<String>> {
@@ -76,6 +86,22 @@ export class CityGameService {
 
     return this.httpClient.post<String>(
       this.cityGameUrl + '/addplacetogame',
+      jsonData,
+      { observe: 'response' }
+    );
+  }
+
+  public addAllPlacesToGame(
+    places: PlaceInGame[]
+  ): Observable<HttpResponse<String>> {
+    console.log('Hej service');
+    const objectMapper = new ObjectMapper();
+
+    const jsonData = objectMapper.stringify<PlaceInGame[]>(places);
+    console.log(jsonData);
+
+    return this.httpClient.post<String>(
+      this.cityGameUrl + '/addallplaces',
       jsonData,
       { observe: 'response' }
     );

@@ -1,0 +1,49 @@
+.icon-button {
+  position: absolute;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  margin: 0 auto;
+  margin-bottom: 20%;
+
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+  border-radius: 48px !important;
+  padding-left: 0.25em;
+  width: fit-content;
+  border: none;
+
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.125em;
+  line-height: 2.5 !important;
+  vertical-align: middle;
+  padding: 0 1em;
+  user-select: none !important;
+  min-width: 120px;
+  letter-spacing: 1px;
+  /* padding-left: 2em !important;*/
+  position: relative;
+  backface-visibility: hidden;
+  transform: translatey(0) scale3d(1, 1, 1);
+  transition: all 100ms !important;
+
+  /* z-index: 2; */
+}
+
+.icon-button:hover {
+  color: rgba(white, 0.75);
+}
+.icon-button:active {
+  color: rgba(white, 0.5) !important;
+  transform: translatey(4px) scale3d(0.98, 0.98, 0.98);
+  outline: none !important;
+}
+.icon-button:focus {
+  outline: none !important;
+  box-shadow: 0 0 1px 3px rgba(blue, 0.4);
+}

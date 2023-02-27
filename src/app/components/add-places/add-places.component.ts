@@ -19,6 +19,8 @@ import { PlaceInGame } from 'src/app/models/place-in-game';
 export class AddPlacesComponent {
   // ERROR: Geocode was not successful for the following reason: ZERO_RESULTS
 
+  //OVER_QUERY_LIMIT error
+
   addressInputElem = document.getElementById('address') as HTMLInputElement;
 
   infoWindow!: google.maps.InfoWindow;
@@ -27,6 +29,8 @@ export class AddPlacesComponent {
   map!: google.maps.Map;
   possiblePlaceMarker!: google.maps.Marker;
   private mapsMarkers: google.maps.Marker[] = [];
+
+  placesArray: PlaceInGame[] = [];
 
   possibleAddress: string = '';
 
@@ -43,7 +47,6 @@ export class AddPlacesComponent {
     this.placeInGame = new PlaceInGame();
   }
 
-  
   //updateImagePreview() {
   //   var imageUrl = document.getElementById('image-url') as HTMLInputElement;
   //   var imageUrlVal = imageUrl.value;
@@ -57,7 +60,6 @@ export class AddPlacesComponent {
   //    imagePreview.src = imageUrl.value;
   //   document.getElementById('error-message')!.innerHTML = "";
   // }
-
 
   mapInitializer() {
     this.geocoder = new google.maps.Geocoder();
@@ -139,7 +141,8 @@ export class AddPlacesComponent {
     maps: google.maps.Map,
     placeInGame: PlaceInGame,
     cityGameService: CityGameService,
-    markers: google.maps.Marker[]
+    markers: google.maps.Marker[],
+    placesArray: PlaceInGame[]
   ) {
     let legendElem = document.getElementById('legend') as HTMLTextAreaElement;
     if (legendElem.value !== '') {
@@ -182,12 +185,31 @@ export class AddPlacesComponent {
               placeInGame.photoLink = '';
               placeInGame.cityGame = cityGameService.getCityGameObject();
 
-              console.log(JSON.stringify(placeInGame));
+              placesArray.push(new PlaceInGame());
+              let lengthOfPlacesArray = placesArray.length;
+
+              placesArray[lengthOfPlacesArray - 1].orderId =
+                lengthOfPlacesArray;
+              placesArray[lengthOfPlacesArray - 1].address = address;
+              placesArray[lengthOfPlacesArray - 1].legend = legend;
+              placesArray[lengthOfPlacesArray - 1].photoLink = '';
+              placesArray[lengthOfPlacesArray - 1].latitudeCoord =
+                results[0].geometry.location.toJSON().lat;
+              placesArray[lengthOfPlacesArray - 1].longitudeCoord =
+                results[0].geometry.location.toJSON().lng;
+              placesArray[lengthOfPlacesArray - 1].cityGame =
+                cityGameService.getCityGameObject();
+
+              console.log(JSON.stringify(placesArray[lengthOfPlacesArray - 1]));
+
+              cityGameService.setGamePlacesArray(placesArray);
+
+              // console.log(JSON.stringify(placeInGame));
 
               //send placeInGame object to database
-              cityGameService
-                .addNewPlaceToGame(placeInGame)
-                .subscribe((resp) => {});
+              // cityGameService
+              //   .addNewPlaceToGame(placeInGame)
+              //   .subscribe((resp) => {});
             } else {
               console.log('ADDRESS IS NOT OK!');
               alert(
@@ -215,8 +237,11 @@ export class AddPlacesComponent {
       this.map,
       this.placeInGame,
       this.cityGameService,
-      this.mapsMarkers
+      this.mapsMarkers,
+      this.placesArray
     );
+
+    console.log(this.placesArray.length);
 
     this.placeInGame.cityGame = this.cityGameService.getCityGameObject();
     console.log(this.cityGameService.getCityGameObject());
