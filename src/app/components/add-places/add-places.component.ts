@@ -43,9 +43,19 @@ export class AddPlacesComponent {
     this.placeInGame = new PlaceInGame();
   }
 
-  //THIS IS THE PLACE FOR YOUR FUNCTION
-  //
-  //
+  
+  updateImagePreview() {
+    var imageUrl = document.getElementById('image-url').value;
+    var imagePreview = document.getElementById('image-preview');
+    if (imageUrl.match(/\.(jpeg|jpg|png)$/) == null) {
+      imagePreview.src = "";
+      document.getElementById('error-message').innerHTML = "It's not a URL of an image.";
+      return;
+    }
+    imagePreview.src = imageUrl;
+    document.getElementById('error-message').innerHTML = "";
+  }
+
 
   mapInitializer() {
     this.geocoder = new google.maps.Geocoder();

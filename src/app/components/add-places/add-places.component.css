@@ -110,8 +110,8 @@ body {
   font-size: 16px;
   color: white;
   display: inline-block;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-bottom: -10px;
   width: 300px;
 }
 
@@ -124,13 +124,14 @@ body {
   margin-bottom: 20px;
 }
 
-.bottom-container-text {
-  font-size: 15px;
-  color: white;
-  display: inline-block;
-  margin-left: 10px;
-  margin-bottom: 20px;
-  width: 300px;
+.form-input-field {
+  font-size: 14px;
+  padding: 8px 12px;
+  width: 50%;
+  border-radius: 5px;
+  border: none;
+  margin-left: 20px;
+  margin-bottom: 0px;
 }
 
 select {
@@ -170,14 +171,13 @@ select {
 } */
 
 /* styles for the input fields */
-input[type="text"],
-input[type="datetime-local"] {
+input[type="text"] {
   font-size: 14px;
   padding: 8px 12px;
-  width: 90%;
+  width: 50%;
   border-radius: 10px;
   border: none;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 h2 {
@@ -185,7 +185,7 @@ h2 {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 /* .form-input-field {
@@ -365,7 +365,7 @@ h2 {
   outline: none !important;
   box-shadow: 0 0 1px 3px rgba(blue, 0.4);
 }
-*/ .bottom-container1 {
+.bottom-container1 {
   position: relative;
   padding: 10px;
   border-radius: 10px;
@@ -436,3 +436,24 @@ h2 {
   font-style: normal;
   font-weight: normal;
 } */
+
+
+.image-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+      }
+
+
+#image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-radius: 10px;
+      }
+
+      
+.error {
+        color: red;
+      }
