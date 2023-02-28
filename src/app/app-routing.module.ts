@@ -5,6 +5,7 @@ import { AddPlacesComponent } from './components/add-places/add-places.component
 import { StartComponent } from './components/start/start.component';
 import { GetAllCityGamesComponent } from './components/get-all-city-games/get-all-city-games.component';
 import { SummaryComponent } from './components/summary/summary.component';
+import { EditPlaceComponent } from './components/edit-place/edit-place.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'addplaces', component: AddPlacesComponent },
   { path: 'allcitygames', component: GetAllCityGamesComponent },
   { path: 'summary', component: SummaryComponent },
+  { path: 'editplace', component: EditPlaceComponent },
 ];
 
 @NgModule({

@@ -47,3 +47,124 @@
   outline: none !important;
   box-shadow: 0 0 1px 3px rgba(blue, 0.4);
 }
+
+.bottom-container1 {
+  position: relative;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 0 auto;
+  bottom: 0;
+
+  height: 10%;
+  line-height: 4em;
+
+  right: 0;
+
+  margin-bottom: 15%;
+
+  text-align: center;
+  /* z-index: 2; */
+}
+
+.bottom-container-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+
+  font-size: 20px;
+
+  background-clip: text;
+
+  background: -webkit-linear-gradient(top left, #84ceeb 20%, #8860d0 100%) fixed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.icon-place-button {
+  /* background: rgb(10, 180, 38); */
+  background: linear-gradient(to bottom, #fb0fb9 20%, #8860d0 100%) fixed;
+  /* display: flex; */
+  display: block;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  color: white;
+   min-width: 10%;
+
+  /* margin: 0 auto; */
+  margin-right: 1%;
+  margin-bottom: 1%;
+
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+  border-radius: 48px !important;
+  padding-left: 0.25em;
+  width: fit-content;
+  border: none;
+
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.125em;
+  line-height: 2.5 !important;
+  vertical-align: middle;
+  padding: 0 1em;
+  user-select: none !important;
+  min-width: 120px;
+  letter-spacing: 1px;
+  padding-left: 2em !important;
+  position: relative;
+  backface-visibility: hidden;
+  transform: translatey(0) scale3d(1, 1, 1);
+  transition: all 100ms !important;
+}
+
+.icon-place-button:hover {
+  color: rgba(white, 0.75);
+}
+.icon-place-button:active {
+  color: rgba(white, 0.5) !important;
+  transform: translatey(4px) scale3d(0.98, 0.98, 0.98);
+  outline: none !important;
+}
+.icon-place-button:focus {
+  outline: none !important;
+  box-shadow: 0 0 1px 3px rgba(blue, 0.4);
+}
+
+.plain-text {
+  pointer-events: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  width: 90%;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;  
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 3em; /*48px;*/ /* Preferred icon size */
+  display: inline-block;
+  line-height: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}

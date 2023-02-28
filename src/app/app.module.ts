@@ -11,6 +11,7 @@ import { AddPlacesComponent } from './components/add-places/add-places.component
 import { StartComponent } from './components/start/start.component';
 import { GetAllCityGamesComponent } from './components/get-all-city-games/get-all-city-games.component';
 import { SummaryComponent } from './components/summary/summary.component';
+import { EditPlaceComponent } from './components/edit-place/edit-place.component';
 // import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SummaryComponent } from './components/summary/summary.component';
     StartComponent,
     GetAllCityGamesComponent,
     SummaryComponent,
+    EditPlaceComponent,
   ],
   imports: [
     BrowserModule,
