@@ -33,7 +33,9 @@
       ><br />
     </form>
 
-    <label for="imageUrl" class="form-input-label"> <h3>Image URL:</h3></label>
+    <label for="imageUrl" class="form-input-label">
+      <h3>Image URL(optional):</h3></label
+    >
     <input
       class="form-input-field"
       id="imageUrl"
@@ -50,8 +52,7 @@
     <div id="error-message" class="error"></div>
 
     <button class="icon-button" type="submit" (click)="onSubmit()">
-      <span class="button-icon material-icons">add</span>
-      <span class="button-text-content">Add new place</span>
+      <span class="span-text-content">Add another place</span>
     </button>
 
     <button
@@ -60,7 +61,7 @@
       class="icon-button"
       type="submit"
     >
-      Save all places
+      <span class="span-text-content">Save and go to summary</span>
     </button>
   </div>
 

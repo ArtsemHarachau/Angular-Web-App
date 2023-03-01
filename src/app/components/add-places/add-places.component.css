@@ -1,8 +1,6 @@
 #map {
-  position: relative;
-  height: 91vh;
-  width: 100%;
-
+  position: absolute;
+  height: 98vh;
   z-index: 1;
 }
 
@@ -12,13 +10,13 @@ body {
 
 .container-form {
   position: absolute;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   /* min-width: 500px; */
   max-width: 400px;
   margin: 0 auto;
-  margin-top: 6%;
+  margin-top: 2%;
   margin-left: 2%;
   height: auto;
 
@@ -91,6 +89,20 @@ h2 {
   font-size: 26px;
 }
 
+.button-icon {
+  background-clip: text;
+
+  background: -webkit-linear-gradient(#84ceeb 20%, #8860d0 100%) fixed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  position: absolute;
+  left: 0.7em;
+
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
 .icon-button {
   position: absolute;
   background: white;
@@ -101,11 +113,11 @@ h2 {
   justify-content: center;
 
   margin: 0 auto;
-  margin-bottom: 20%;
+  margin-bottom: 5%;
 
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 
-  border-radius: 48px !important;
+  border-radius: 24px !important;
   padding-left: 0.25em;
   width: fit-content;
   border: none;
@@ -118,14 +130,11 @@ h2 {
   padding: 0 1em;
   user-select: none !important;
   min-width: 120px;
-  letter-spacing: 1px;
-  /* padding-left: 2em !important;*/
+  /* letter-spacing: 1px; */
   position: relative;
   backface-visibility: hidden;
   transform: translatey(0) scale3d(1, 1, 1);
   transition: all 100ms !important;
-
-  /* z-index: 2; */
 }
 
 .icon-button:hover {
@@ -225,22 +234,19 @@ h2 {
   -webkit-text-fill-color: transparent;
 }
 
-.button-text-content {
+.span-text-content {
   background-clip: text;
 
-  background: -webkit-linear-gradient(#000, #000 100%) fixed;
+  background: -webkit-linear-gradient(#84ceeb 20%, #8860d0 100%) fixed;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   font-weight: bold;
   letter-spacing: 1px;
   text-align: center;
-  /*margin: 0 auto;
-            / margin-left: 0.25em;
-  padding-left: 0.7em;
-  font-size: 18px !important;
+
+  font-size: 16px !important;
   line-height: 2.5 !important;
-  margin-left: 1.25em;*/
 }
 
 .add-place-container {

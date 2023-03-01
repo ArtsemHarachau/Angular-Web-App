@@ -27,6 +27,8 @@ export class CityGameService {
   private gamePlacesArray = new BehaviorSubject<PlaceInGame[]>([]);
 
   private placeForUpdate = new BehaviorSubject<PlaceInGame>({});
+
+  private mapsMarkersArray = new BehaviorSubject<google.maps.Marker[]>([]);
   // createdCityGameObject = this.cityGameObject.asObservable();
 
   constructor(private httpClient: HttpClient) {
@@ -64,6 +66,14 @@ export class CityGameService {
 
   getPlaceForUpdate(): PlaceInGame {
     return this.placeForUpdate.getValue();
+  }
+
+  setMapsMarkersArray(markers: google.maps.Marker[]) {
+    this.mapsMarkersArray.next(markers);
+  }
+
+  getMapsMarkersArray(): google.maps.Marker[] {
+    return this.mapsMarkersArray.getValue();
   }
 
   public createCityGame(cityGame: CityGame): Observable<HttpResponse<String>> {
