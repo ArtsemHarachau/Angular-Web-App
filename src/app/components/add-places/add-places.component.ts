@@ -28,13 +28,8 @@ export class AddPlacesComponent {
   possiblePlaceMarker!: google.maps.Marker;
   private mapsMarkers: google.maps.Marker[] = [];
 
-  placesArray: PlaceInGame[] = [];
-
-  possibleAddress: string = '';
-
-  private countPlaces: number = 1;
-
-  placeInGame: PlaceInGame;
+  private placesArray: PlaceInGame[] = [];
+  public placeInGame: PlaceInGame;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,9 +39,11 @@ export class AddPlacesComponent {
   ) {
     this.placeInGame = new PlaceInGame();
     this.possiblePlaceMarker = new google.maps.Marker();
+    this.placesArray = cityGameService.getGamePlacesArray();
+    this.mapsMarkers = this.cityGameService.getMapsMarkersArray();
   }
 
-  mapInitializer() {
+  private mapInitializer() {
     this.geocoder = new google.maps.Geocoder();
 
     let lat = 52.46;
@@ -61,6 +58,12 @@ export class AddPlacesComponent {
     };
 
     this.map = new google.maps.Map(document.getElementById('map')!, mapOptions);
+
+    if (this.mapsMarkers !== null) {
+      this.mapsMarkers.forEach((element) => {
+        element.setMap(this.map);
+      });
+    }
 
     this.map.addListener('click', (mapsMouseEvent) => {
       if (!!this.possiblePlaceMarker.getMap()) {
@@ -77,47 +80,12 @@ export class AddPlacesComponent {
       this.possiblePlaceMarker.setMap(this.map);
 
       this.addressFromCoord(mapsMouseEvent.latLng);
-      // addressElem!.innerHTML = mapsMouseEvent.latLng.toString();
-      // console.log(addressElem!.innerHTML);
-      // Create a new InfoWindow.
-      // this.infoWindow = new google.maps.InfoWindow({
-      //   position: mapsMouseEvent.latLng,
-      // });
-      // this.infoWindow.setContent(
-      //   JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-      // );
-      // this.infoWindow.open(this.map);
     });
   }
 
   ngAfterViewInit() {
     this.mapInitializer();
-
-    // let addressElem = document.getElementById('address') as HTMLInputElement;
-    // addressElem.addEventListener('focusout', (event) => this.addressChanged());
   }
-
-  // async addressChanged() {
-  //   let addressElem = document.getElementById('address') as HTMLInputElement;
-  //   console.log('ADDRESS EVENT: -> ', addressElem.value);
-
-  //   this.geocoder.geocode(
-  //     { address: addressElem.value },
-  //     function (results, status) {
-  //       if (addressElem.value !== '') {
-  //         if (status == 'OK') {
-  //           console.log('ADDRESS IS OK!');
-  //         } else {
-  //           console.log('ADDRESS IS NOT OK!');
-  //           alert(
-  //             'Your address does not exist! Please enter address correctly: ' +
-  //               status
-  //           );
-  //         }
-  //       }
-  //     }
-  //   );
-  // }
 
   async addressFromCoord(coords: google.maps.LatLng) {
     this.geocoder.geocode({ location: coords }, function (results) {
@@ -143,7 +111,7 @@ export class AddPlacesComponent {
     docVal!.innerHTML = '';
   }
 
-  saveNewPlace(
+  private saveNewPlace(
     address: string,
     legend: string,
     imageLink: string,
@@ -153,11 +121,9 @@ export class AddPlacesComponent {
     markers: google.maps.Marker[],
     placesArray: PlaceInGame[]
   ) {
-    // let legendElem = document.getElementById('legend') as HTMLTextAreaElement;
     if (legend !== '') {
       console.log("Let's go!");
 
-      // let addressElem = document.getElementById('address') as HTMLInputElement;
       console.log('ADDRESS EVENT: -> ', address);
 
       this.geocoder.geocode({ address: address }, function (results, status) {
@@ -261,7 +227,5 @@ export class AddPlacesComponent {
 
     this.placeInGame.cityGame = this.cityGameService.getCityGameObject();
     console.log(this.cityGameService.getCityGameObject());
-
-    //this.updateImagePreview;
   }
 }
