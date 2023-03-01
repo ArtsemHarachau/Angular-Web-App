@@ -47,20 +47,6 @@ export class AddPlacesComponent {
     this.placeInGame = new PlaceInGame();
   }
 
-  //updateImagePreview() {
-  //   var imageUrl = document.getElementById('image-url') as HTMLInputElement;
-  //   var imageUrlVal = imageUrl.value;
-  //   var imagePreview = document.getElementById('image-preview') as HTMLImageElement;
-  //   if (imageUrlVal.match(/\.(jpeg|jpg|png)$/) == null) {
-  //     imagePreview.src = "";
-  //     var docVal = document.getElementById('error-message');
-  //     docVal!.innerHTML = "It's not a URL of an image.";
-  //     return;
-  //    }
-  //    imagePreview.src = imageUrl.value;
-  //   document.getElementById('error-message')!.innerHTML = "";
-  // }
-
   mapInitializer() {
     this.geocoder = new google.maps.Geocoder();
 
@@ -135,9 +121,27 @@ export class AddPlacesComponent {
     });
   }
 
+  updateImagePreview() {
+    var imageUrl = document.getElementById('imageUrl') as HTMLInputElement;
+    var imageUrlVal = imageUrl.value;
+    var imagePreview = document.getElementById(
+      'image-preview'
+    ) as HTMLImageElement;
+    var docVal = document.getElementById('error-message');
+
+    if (imageUrlVal.match(/\.(jpeg|jpg|png)$/) == null) {
+      imagePreview.src = '';
+      docVal!.innerHTML = "It's not a URL of an image.";
+      return;
+    }
+    imagePreview.src = imageUrl.value;
+    docVal!.innerHTML = '';
+  }
+
   saveNewPlace(
     address: string,
     legend: string,
+    imageLink: string,
     maps: google.maps.Map,
     placeInGame: PlaceInGame,
     cityGameService: CityGameService,
@@ -175,15 +179,15 @@ export class AddPlacesComponent {
               markers[markers.length - 1].setMap(maps);
 
               //preparing placeInGame object for sending to the database
-              placeInGame.orderId = markers.length;
-              placeInGame.latitudeCoord =
-                results[0].geometry.location.toJSON().lat;
-              placeInGame.longitudeCoord =
-                results[0].geometry.location.toJSON().lng;
-              placeInGame.address = address;
-              placeInGame.legend = legend;
-              placeInGame.photoLink = '';
-              placeInGame.cityGame = cityGameService.getCityGameObject();
+              // placeInGame.orderId = markers.length;
+              // placeInGame.latitudeCoord =
+              //   results[0].geometry.location.toJSON().lat;
+              // placeInGame.longitudeCoord =
+              //   results[0].geometry.location.toJSON().lng;
+              // placeInGame.address = address;
+              // placeInGame.legend = legend;
+              // placeInGame.photoLink = imageLink;
+              // placeInGame.cityGame = cityGameService.getCityGameObject();
 
               placesArray.push(new PlaceInGame());
               let lengthOfPlacesArray = placesArray.length;
@@ -192,7 +196,7 @@ export class AddPlacesComponent {
                 lengthOfPlacesArray;
               placesArray[lengthOfPlacesArray - 1].address = address;
               placesArray[lengthOfPlacesArray - 1].legend = legend;
-              placesArray[lengthOfPlacesArray - 1].photoLink = '';
+              placesArray[lengthOfPlacesArray - 1].photoLink = imageLink;
               placesArray[lengthOfPlacesArray - 1].latitudeCoord =
                 results[0].geometry.location.toJSON().lat;
               placesArray[lengthOfPlacesArray - 1].longitudeCoord =
@@ -230,10 +234,12 @@ export class AddPlacesComponent {
   onSubmit() {
     let addressElem = document.getElementById('address') as HTMLInputElement;
     let legendElem = document.getElementById('legend') as HTMLInputElement;
+    let imageLink = document.getElementById('imageUrl') as HTMLInputElement;
 
     this.saveNewPlace(
       addressElem.value,
       legendElem.value,
+      imageLink.value,
       this.map,
       this.placeInGame,
       this.cityGameService,
@@ -247,26 +253,5 @@ export class AddPlacesComponent {
     console.log(this.cityGameService.getCityGameObject());
 
     //this.updateImagePreview;
-
-    this.addNewPlace();
-  }
-
-  addNewPlace() {
-    console.log('Hej Hej Hej');
-
-    let newPlaceButton = this.renderer.createElement('button');
-    newPlaceButton.innerText = `Place ${this.countPlaces++}`;
-    newPlaceButton.setAttribute('class', 'icon-place-button');
-
-    let parent = document.getElementById('places-track');
-
-    if (!!document.getElementById('zero-places-span')) {
-      this.renderer.removeChild(
-        parent,
-        document.getElementById('zero-places-span')
-      );
-    }
-
-    this.renderer.appendChild(parent, newPlaceButton);
   }
 }

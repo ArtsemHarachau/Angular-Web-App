@@ -21,12 +21,31 @@ export class SummaryComponent {
   ngOnInit() {
     this.places = this.cityGameService.getGamePlacesArray();
     console.log(this.places);
+    // for (let i = 0; i < this.places.length; i++) {
+    //   this.addNewPlace(
+    //     this.places[i].orderId!,
+    //     this.router,
+    //     '/editplace',
+    //     this.cityGameService,
+    //     this.places
+    //   );
+    //   this.addPlainText(this.places[i].address!);
+    //   this.addDeleteButton();
+    // }
+  }
+
+  ngAfterViewInit() {
     for (let i = 0; i < this.places.length; i++) {
-      this.addNewPlace(this.places[i].orderId!, this.router, "/editplace");
+      this.addNewPlace(
+        this.places[i].orderId!,
+        this.router,
+        '/editplace',
+        this.cityGameService,
+        this.places
+      );
       this.addPlainText(this.places[i].address!);
       this.addDeleteButton();
     }
-    
   }
 
   onSubmit() {
@@ -35,7 +54,13 @@ export class SummaryComponent {
       .subscribe((resp) => {});
   }
 
-  addNewPlace(orderID:number, router: Router, path:string) {
+  addNewPlace(
+    orderID: number,
+    router: Router,
+    path: string,
+    cityGameService: CityGameService,
+    placesArray: PlaceInGame[]
+  ) {
     console.log('Hej Hej Hej');
 
     let newPlaceButton = this.renderer.createElement('button');
@@ -46,6 +71,7 @@ export class SummaryComponent {
       // console.log('button clicked');
       // this.router.navigateByUrl("/editplace");
       router.navigateByUrl(path);
+      cityGameService.setPlaceForUpdate(placesArray[orderID - 1]);
     });
 
     let parent = document.getElementById('places-track');
@@ -60,7 +86,7 @@ export class SummaryComponent {
     this.renderer.appendChild(parent, newPlaceButton);
   }
 
-  addPlainText(address:string) {
+  addPlainText(address: string) {
     let newPlainText = this.renderer.createElement('input');
     newPlainText.value = address;
     newPlainText.setAttribute('class', 'plain-text');

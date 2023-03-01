@@ -25,6 +25,8 @@ export class CityGameService {
   private cityGameObject = new BehaviorSubject<CityGame>({});
 
   private gamePlacesArray = new BehaviorSubject<PlaceInGame[]>([]);
+
+  private placeForUpdate = new BehaviorSubject<PlaceInGame>({});
   // createdCityGameObject = this.cityGameObject.asObservable();
 
   constructor(private httpClient: HttpClient) {
@@ -54,6 +56,14 @@ export class CityGameService {
 
   getGamePlacesArray(): PlaceInGame[] {
     return this.gamePlacesArray.getValue();
+  }
+
+  setPlaceForUpdate(place: PlaceInGame) {
+    this.placeForUpdate.next(place);
+  }
+
+  getPlaceForUpdate(): PlaceInGame {
+    return this.placeForUpdate.getValue();
   }
 
   public createCityGame(cityGame: CityGame): Observable<HttpResponse<String>> {
