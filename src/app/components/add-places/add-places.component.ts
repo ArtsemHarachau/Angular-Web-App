@@ -21,8 +21,6 @@ export class AddPlacesComponent {
 
   //OVER_QUERY_LIMIT error
 
-  addressInputElem = document.getElementById('address') as HTMLInputElement;
-
   infoWindow!: google.maps.InfoWindow;
 
   geocoder!: google.maps.Geocoder;
@@ -45,6 +43,7 @@ export class AddPlacesComponent {
     private renderer: Renderer2
   ) {
     this.placeInGame = new PlaceInGame();
+    this.possiblePlaceMarker = new google.maps.Marker();
   }
 
   mapInitializer() {
@@ -57,11 +56,17 @@ export class AddPlacesComponent {
     let mapOptions: google.maps.MapOptions = {
       center: coordinates,
       zoom: 8,
+      mapTypeControl: false,
+      fullscreenControl: false,
     };
 
     this.map = new google.maps.Map(document.getElementById('map')!, mapOptions);
 
     this.map.addListener('click', (mapsMouseEvent) => {
+      if (!!this.possiblePlaceMarker.getMap()) {
+        this.possiblePlaceMarker.setMap(null);
+      }
+
       if (!!this.possiblePlaceMarker) {
         this.possiblePlaceMarker.setMap(null);
       }
@@ -92,27 +97,27 @@ export class AddPlacesComponent {
     // addressElem.addEventListener('focusout', (event) => this.addressChanged());
   }
 
-  async addressChanged() {
-    let addressElem = document.getElementById('address') as HTMLInputElement;
-    console.log('ADDRESS EVENT: -> ', addressElem.value);
+  // async addressChanged() {
+  //   let addressElem = document.getElementById('address') as HTMLInputElement;
+  //   console.log('ADDRESS EVENT: -> ', addressElem.value);
 
-    this.geocoder.geocode(
-      { address: addressElem.value },
-      function (results, status) {
-        if (addressElem.value !== '') {
-          if (status == 'OK') {
-            console.log('ADDRESS IS OK!');
-          } else {
-            console.log('ADDRESS IS NOT OK!');
-            alert(
-              'Your address does not exist! Please enter address correctly: ' +
-                status
-            );
-          }
-        }
-      }
-    );
-  }
+  //   this.geocoder.geocode(
+  //     { address: addressElem.value },
+  //     function (results, status) {
+  //       if (addressElem.value !== '') {
+  //         if (status == 'OK') {
+  //           console.log('ADDRESS IS OK!');
+  //         } else {
+  //           console.log('ADDRESS IS NOT OK!');
+  //           alert(
+  //             'Your address does not exist! Please enter address correctly: ' +
+  //               status
+  //           );
+  //         }
+  //       }
+  //     }
+  //   );
+  // }
 
   async addressFromCoord(coords: google.maps.LatLng) {
     this.geocoder.geocode({ location: coords }, function (results) {
@@ -148,84 +153,85 @@ export class AddPlacesComponent {
     markers: google.maps.Marker[],
     placesArray: PlaceInGame[]
   ) {
-    let legendElem = document.getElementById('legend') as HTMLTextAreaElement;
-    if (legendElem.value !== '') {
+    // let legendElem = document.getElementById('legend') as HTMLTextAreaElement;
+    if (legend !== '') {
       console.log("Let's go!");
 
-      let addressElem = document.getElementById('address') as HTMLInputElement;
-      console.log('ADDRESS EVENT: -> ', addressElem.value);
+      // let addressElem = document.getElementById('address') as HTMLInputElement;
+      console.log('ADDRESS EVENT: -> ', address);
 
-      this.geocoder.geocode(
-        { address: addressElem.value },
-        function (results, status) {
-          if (addressElem.value !== '') {
-            if (status == 'OK') {
-              console.log('ADDRESS IS OK!');
+      this.geocoder.geocode({ address: address }, function (results, status) {
+        if (address !== '') {
+          if (status == 'OK') {
+            console.log('ADDRESS IS OK!');
 
-              //create new marker on maps
-              markers.push(
-                new google.maps.Marker({
-                  position: results[0].geometry.location,
-                  label: (markers.length + 1).toString(),
-                  title: results[0].geometry.location.toString(),
-                })
-              );
+            //clear address, legend and imageUrl inputs html elements
+            placeInGame.address = '';
+            placeInGame.legend = '';
+            placeInGame.photoLink = '';
 
-              markers[markers.length - 1].addListener('click', function (e) {
-                console.log(this.getPosition()?.toJSON());
-                this.setMap(null);
-              });
+            //create new marker on maps
+            markers.push(
+              new google.maps.Marker({
+                position: results[0].geometry.location,
+                label: (markers.length + 1).toString(),
+                title: results[0].geometry.location.toString(),
+              })
+            );
 
-              markers[markers.length - 1].setMap(maps);
+            markers[markers.length - 1].addListener('click', function (e) {
+              console.log(this.getPosition()?.toJSON());
+              this.setMap(null);
+            });
 
-              //preparing placeInGame object for sending to the database
-              // placeInGame.orderId = markers.length;
-              // placeInGame.latitudeCoord =
-              //   results[0].geometry.location.toJSON().lat;
-              // placeInGame.longitudeCoord =
-              //   results[0].geometry.location.toJSON().lng;
-              // placeInGame.address = address;
-              // placeInGame.legend = legend;
-              // placeInGame.photoLink = imageLink;
-              // placeInGame.cityGame = cityGameService.getCityGameObject();
+            markers[markers.length - 1].setMap(maps);
 
-              placesArray.push(new PlaceInGame());
-              let lengthOfPlacesArray = placesArray.length;
+            //preparing placeInGame object for sending to the database
+            // placeInGame.orderId = markers.length;
+            // placeInGame.latitudeCoord =
+            //   results[0].geometry.location.toJSON().lat;
+            // placeInGame.longitudeCoord =
+            //   results[0].geometry.location.toJSON().lng;
+            // placeInGame.address = address;
+            // placeInGame.legend = legend;
+            // placeInGame.photoLink = imageLink;
+            // placeInGame.cityGame = cityGameService.getCityGameObject();
 
-              placesArray[lengthOfPlacesArray - 1].orderId =
-                lengthOfPlacesArray;
-              placesArray[lengthOfPlacesArray - 1].address = address;
-              placesArray[lengthOfPlacesArray - 1].legend = legend;
-              placesArray[lengthOfPlacesArray - 1].photoLink = imageLink;
-              placesArray[lengthOfPlacesArray - 1].latitudeCoord =
-                results[0].geometry.location.toJSON().lat;
-              placesArray[lengthOfPlacesArray - 1].longitudeCoord =
-                results[0].geometry.location.toJSON().lng;
-              placesArray[lengthOfPlacesArray - 1].cityGame =
-                cityGameService.getCityGameObject();
+            placesArray.push(new PlaceInGame());
+            let lengthOfPlacesArray = placesArray.length;
 
-              console.log(JSON.stringify(placesArray[lengthOfPlacesArray - 1]));
+            placesArray[lengthOfPlacesArray - 1].orderId = lengthOfPlacesArray;
+            placesArray[lengthOfPlacesArray - 1].address = address;
+            placesArray[lengthOfPlacesArray - 1].legend = legend;
+            placesArray[lengthOfPlacesArray - 1].photoLink = imageLink;
+            placesArray[lengthOfPlacesArray - 1].latitudeCoord =
+              results[0].geometry.location.toJSON().lat;
+            placesArray[lengthOfPlacesArray - 1].longitudeCoord =
+              results[0].geometry.location.toJSON().lng;
+            placesArray[lengthOfPlacesArray - 1].cityGame =
+              cityGameService.getCityGameObject();
 
-              cityGameService.setGamePlacesArray(placesArray);
+            console.log(JSON.stringify(placesArray[lengthOfPlacesArray - 1]));
 
-              // console.log(JSON.stringify(placeInGame));
+            cityGameService.setGamePlacesArray(placesArray);
 
-              //send placeInGame object to database
-              // cityGameService
-              //   .addNewPlaceToGame(placeInGame)
-              //   .subscribe((resp) => {});
-            } else {
-              console.log('ADDRESS IS NOT OK!');
-              alert(
-                'Your address does not exist! Please enter address correctly: ' +
-                  status
-              );
-            }
+            // console.log(JSON.stringify(placeInGame));
+
+            //send placeInGame object to database
+            // cityGameService
+            //   .addNewPlaceToGame(placeInGame)
+            //   .subscribe((resp) => {});
           } else {
-            alert('Address is empty!');
+            console.log('ADDRESS IS NOT OK!');
+            alert(
+              'Your address does not exist! Please enter address correctly: ' +
+                status
+            );
           }
+        } else {
+          alert('Address is empty!');
         }
-      );
+      });
     } else {
       alert('Legend of place is empty!');
     }
@@ -246,6 +252,10 @@ export class AddPlacesComponent {
       this.mapsMarkers,
       this.placesArray
     );
+
+    if (!!this.possiblePlaceMarker.getMap()) {
+      this.possiblePlaceMarker.setMap(null);
+    }
 
     console.log(this.placesArray.length);
 

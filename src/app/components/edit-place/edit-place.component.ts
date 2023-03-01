@@ -50,6 +50,8 @@ export class EditPlaceComponent {
     let mapOptions: google.maps.MapOptions = {
       center: coordinates,
       zoom: 8,
+      mapTypeControl: false,
+      fullscreenControl: false,
     };
 
     this.map = new google.maps.Map(document.getElementById('map')!, mapOptions);

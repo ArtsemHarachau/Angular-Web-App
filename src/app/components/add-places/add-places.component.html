@@ -12,7 +12,6 @@
         id="address"
         name="address"
         [(ngModel)]="placeInGame.address"
-        focusout="addressChanged($event)"
         required
         #address="ngModel"
       /><br />
@@ -46,7 +45,7 @@
       (input)="updateImagePreview()"
     />
     <br />
-    <img id="image-preview" src="" />
+    <img id="image-preview" src="{{ placeInGame.photoLink }}" />
 
     <div id="error-message" class="error"></div>
 
