@@ -2,6 +2,7 @@ import { Component, Input, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ResolveEnd, Router } from '@angular/router';
 import { PlaceInGame } from 'src/app/models/place-in-game';
 import { CityGameService } from 'src/app/services/city-game.service';
+import { NgFor, NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-summary',
@@ -10,6 +11,8 @@ import { CityGameService } from 'src/app/services/city-game.service';
 })
 export class SummaryComponent {
   places: PlaceInGame[] = [];
+
+  buttons: HTMLButtonElement[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -43,8 +46,8 @@ export class SummaryComponent {
         this.cityGameService,
         this.places
       );
-      this.addPlainText(this.places[i].address!);
-      this.addDeleteButton();
+      // this.addPlainText(this.places[i].address!);
+      // this.addDeleteButton();
     }
   }
 
@@ -52,6 +55,10 @@ export class SummaryComponent {
     this.cityGameService
       .addAllPlacesToGame(this.places)
       .subscribe((resp) => {});
+  }
+
+  test(orderID: number) {
+    this.cityGameService.setPlaceForUpdate(this.places[orderID - 1]);
   }
 
   addNewPlace(
@@ -74,16 +81,18 @@ export class SummaryComponent {
       cityGameService.setPlaceForUpdate(placesArray[orderID - 1]);
     });
 
-    let parent = document.getElementById('places-track');
+    this.buttons.push(newPlaceButton);
 
-    if (!!document.getElementById('zero-places-span')) {
-      this.renderer.removeChild(
-        parent,
-        document.getElementById('zero-places-span')
-      );
-    }
+    // let parent = document.getElementById('places-track');
 
-    this.renderer.appendChild(parent, newPlaceButton);
+    // if (!!document.getElementById('zero-places-span')) {
+    //   this.renderer.removeChild(
+    //     parent,
+    //     document.getElementById('zero-places-span')
+    //   );
+    // }
+
+    // this.renderer.appendChild(parent, newPlaceButton);
   }
 
   addPlainText(address: string) {
