@@ -32,8 +32,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "5kb",
+                  "maximumError": "5kb"
                 }
               ],
               "outputHashing": "all"
@@ -56,8 +56,7 @@
               "browserTarget": "angular-city-game-app:build:production"
             },
             "development": {
-              "browserTarget": "angular-city-game-app:build:development",
-              "port": 80
+              "browserTarget": "angular-city-game-app:build:development"
             }
           },
           "defaultConfiguration": "development"
