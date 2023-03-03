@@ -41,22 +41,36 @@ export class SummaryComponent {
 
   editPlace(orderID: number) {
     this.cityGameService.setPlaceForUpdate(this.places[orderID - 1]);
+    let markers = this.cityGameService.getMapsMarkersArray();
+    let coordinates = new google.maps.LatLng(
+      this.places[orderID - 1].latitudeCoord!,
+      this.places[orderID - 1].longitudeCoord!,
+      false
+    );
+    markers[orderID - 1].setPosition(coordinates);
+    this.cityGameService.setMapsMarkersArray(markers);
   }
 
   deletePlace(orderID: number) {
     this.places.splice(orderID - 1, 1);
 
+    let markers = this.cityGameService.getMapsMarkersArray();
+    markers.splice(orderID - 1, 1);
+
     if (orderID - 1 == 0) {
       for (let i = 0; i < this.places.length; i++) {
         this.places[i].orderId = this.places[i].orderId! - 1;
+        markers[i].setLabel(this.places[i].orderId!.toString());
       }
     } else {
       for (let i = orderID - 1; i < this.places.length; i++) {
         this.places[i].orderId = this.places[i].orderId! - 1;
+        markers[i].setLabel(this.places[i].orderId!.toString());
       }
     }
 
     this.cityGameService.setGamePlacesArray(this.places);
+    this.cityGameService.setMapsMarkersArray(markers);
 
     this.places = this.cityGameService.getGamePlacesArray();
 

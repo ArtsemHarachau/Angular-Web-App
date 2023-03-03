@@ -178,6 +178,14 @@ export class EditPlaceComponent {
             placesArrayForUpdate[placeInGame.orderId! - 1] = placeInGame;
 
             cityGameService.setGamePlacesArray(placesArrayForUpdate);
+
+            let markers = cityGameService.getMapsMarkersArray();
+
+            markers[placeInGame.orderId! - 1].setPosition(
+              results[0].geometry.location
+            );
+
+            cityGameService.setMapsMarkersArray(markers);
           } else {
             console.log('ADDRESS IS NOT OK!');
             alert(
