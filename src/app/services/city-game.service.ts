@@ -32,7 +32,7 @@ export class CityGameService {
   // createdCityGameObject = this.cityGameObject.asObservable();
 
   constructor(private httpClient: HttpClient) {
-    this.cityGameUrl = 'http://localhost:8080/api';
+    this.cityGameUrl = 'http://localhost:8080/api'; //'https://f7f5-83-21-185-125.eu.ngrok.io/api';
   }
 
   setCityGameObject(cityGame: CityGame) {

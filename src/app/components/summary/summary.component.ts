@@ -1,4 +1,4 @@
-import { Component, Input, Renderer2 } from '@angular/core';
+import { Component, Input, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ResolveEnd, Router } from '@angular/router';
 import { PlaceInGame } from 'src/app/models/place-in-game';
 import { CityGameService } from 'src/app/services/city-game.service';
@@ -18,38 +18,16 @@ export class SummaryComponent {
     private route: ActivatedRoute,
     private router: Router,
     private cityGameService: CityGameService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.places = this.cityGameService.getGamePlacesArray();
     console.log(this.places);
-    // for (let i = 0; i < this.places.length; i++) {
-    //   this.addNewPlace(
-    //     this.places[i].orderId!,
-    //     this.router,
-    //     '/editplace',
-    //     this.cityGameService,
-    //     this.places
-    //   );
-    //   this.addPlainText(this.places[i].address!);
-    //   this.addDeleteButton();
-    // }
   }
 
-  ngAfterViewInit() {
-    for (let i = 0; i < this.places.length; i++) {
-      this.addNewPlace(
-        this.places[i].orderId!,
-        this.router,
-        '/editplace',
-        this.cityGameService,
-        this.places
-      );
-      // this.addPlainText(this.places[i].address!);
-      // this.addDeleteButton();
-    }
-  }
+  ngAfterViewInit() {}
 
   onSubmit() {
     this.cityGameService
@@ -57,60 +35,33 @@ export class SummaryComponent {
       .subscribe((resp) => {});
   }
 
-  test(orderID: number) {
+  refresh() {
+    this.cdr.detectChanges();
+  }
+
+  editPlace(orderID: number) {
     this.cityGameService.setPlaceForUpdate(this.places[orderID - 1]);
   }
 
-  addNewPlace(
-    orderID: number,
-    router: Router,
-    path: string,
-    cityGameService: CityGameService,
-    placesArray: PlaceInGame[]
-  ) {
-    console.log('Hej Hej Hej');
+  deletePlace(orderID: number) {
+    this.places.splice(orderID - 1, 1);
 
-    let newPlaceButton = this.renderer.createElement('button');
-    newPlaceButton.innerText = `Place ${orderID}`;
-    newPlaceButton.setAttribute('class', 'icon-place-button');
-    // newPlaceButton.click(this.router.navigateByUrl("/editplace"));
-    newPlaceButton?.addEventListener('click', function handleClick() {
-      // console.log('button clicked');
-      // this.router.navigateByUrl("/editplace");
-      router.navigateByUrl(path);
-      cityGameService.setPlaceForUpdate(placesArray[orderID - 1]);
-    });
+    if (orderID - 1 == 0) {
+      for (let i = 0; i < this.places.length; i++) {
+        this.places[i].orderId = this.places[i].orderId! - 1;
+      }
+    } else {
+      for (let i = orderID - 1; i < this.places.length; i++) {
+        this.places[i].orderId = this.places[i].orderId! - 1;
+      }
+    }
 
-    this.buttons.push(newPlaceButton);
+    this.cityGameService.setGamePlacesArray(this.places);
 
-    // let parent = document.getElementById('places-track');
+    this.places = this.cityGameService.getGamePlacesArray();
 
-    // if (!!document.getElementById('zero-places-span')) {
-    //   this.renderer.removeChild(
-    //     parent,
-    //     document.getElementById('zero-places-span')
-    //   );
-    // }
+    console.log('UPDATED : ', this.places);
 
-    // this.renderer.appendChild(parent, newPlaceButton);
-  }
-
-  addPlainText(address: string) {
-    let newPlainText = this.renderer.createElement('input');
-    newPlainText.value = address;
-    newPlainText.setAttribute('class', 'plain-text');
-    let parent = document.getElementById('places-track');
-    this.renderer.appendChild(parent, newPlainText);
-  }
-
-  addDeleteButton() {
-    //location material icons
-    let deleteButton = document.createElement('button');
-    let deletePlace = document.createElement('span');
-    deletePlace.className = 'material-icons';
-    deletePlace.innerHTML = '&#xe872;';
-    deleteButton.appendChild(deletePlace);
-    let parent = document.getElementById('places-track');
-    parent?.appendChild(deleteButton);
+    this.refresh();
   }
 }

@@ -4,22 +4,43 @@
   <div id="places-track" class="bottom-container1">
     <div *ngFor="let element of places">
       <details>
-        <summary>{{ element.address }}</summary>
-        <div>{{ element.address }}</div>
+        <summary>Place {{ element.orderId }} - {{ element.address }}</summary>
+        {{ element.legend }}
+        <img id="image-preview" src="{{ element.photoLink }}" />
+
+        <div class="details-div-buttons">
+          <button
+            routerLink="/editplace"
+            routerLinkActive="active"
+            class="details-button"
+            (click)="editPlace(element.orderId!)"
+          >
+            <span class="span-text-content">Edit</span>
+          </button>
+
+          <button
+            routerLink="/summary"
+            routerLinkActive="active"
+            class="details-button"
+            (click)="deletePlace(element.orderId!)"
+          >
+            <span class="span-text-content">Delete</span>
+          </button>
+        </div>
       </details>
-      <button
-        routerLink="/editplace"
-        routerLinkActive="active"
-        class="icon-place-button"
-        (click)="test(element.orderId!)"
-      >
-        {{ element.address }}
-      </button>
     </div>
 
-    <span id="zero-places-span" class="bottom-container-text">
+    <!-- <span id="zero-places-span" class="bottom-container-text">
       Zero places in your track</span
+    > -->
+
+    <button
+      routerLink="/addplaces"
+      routerLinkActive="active"
+      class="icon-button"
     >
+      <span class="span-text-content">Add new place</span>
+    </button>
   </div>
 
   <button class="icon-button" type="submit" (click)="onSubmit()">
@@ -27,13 +48,3 @@
     <!-- <span class="button-text-content">Save all places</span> -->
   </button>
 </div>
-
-<!-- <button class="icon-button" type="submit" (click)="onSubmit()">
-  Save game
-</button>
-
-<div id="places-track" class="bottom-container1">
-  <span id="zero-places-span" class="bottom-container-text">
-    Zero places in your track</span
-  >
-</div> -->
