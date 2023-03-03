@@ -17,8 +17,6 @@
         #address="ngModel"
       /><br />
 
-      <!-- focusout="addressChanged($event)" -->
-
       <label for="legend" class="form-input-label">
         <h3>Legend of this place</h3> </label
       ><br />
@@ -36,7 +34,9 @@
       ><br />
     </form>
 
-    <label for="imageUrl" class="form-input-label"> <h3>Image URL:</h3></label>
+    <label for="imageUrl" class="form-input-label">
+      <h3>Image URL(optional):</h3></label
+    >
     <input
       class="form-input-field"
       id="imageUrl"
@@ -59,7 +59,7 @@
       type="submit"
       (click)="onSubmit()"
     >
-      Save changes
+      <span class="span-text-content">Save changes</span>
     </button>
   </div>
 

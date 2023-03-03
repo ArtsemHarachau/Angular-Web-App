@@ -43,7 +43,13 @@
     </button>
   </div>
 
-  <button class="icon-button" type="submit" (click)="onSubmit()">
+  <button
+    routerLink="/"
+    routerLinkActive="active"
+    class="icon-button"
+    type="submit"
+    (click)="onSubmit()"
+  >
     Save game
     <!-- <span class="button-text-content">Save all places</span> -->
   </button>
